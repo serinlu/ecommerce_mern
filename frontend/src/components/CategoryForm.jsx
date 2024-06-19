@@ -2,7 +2,7 @@ const CategoryForm = ({
   value,
   setValue,
   handleSubmit,
-  buttonText = "Submit",
+  buttonText = "Agregar",
   handleDelete,
 }) => {
   return (
@@ -11,7 +11,7 @@ const CategoryForm = ({
         <input
           type="text"
           className="py-3 px-4 border rounded-lg w-full"
-          placeholder="Write category name"
+          placeholder="Escribe el nombre aca"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -26,7 +26,7 @@ const CategoryForm = ({
               onClick={handleDelete}
               className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 foucs:ring-red-500 focus:ring-opacity-50"
             >
-              Delete
+              Eliminar
             </button>
           )}
         </div>

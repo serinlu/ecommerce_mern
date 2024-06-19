@@ -39,7 +39,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                Admin Dashboard
+                Tablero
               </NavLink>
             </li>
             <li>
@@ -50,7 +50,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                Create Category
+                Crear Categoria
               </NavLink>
             </li>
             <li>
@@ -61,7 +61,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                Create Product
+                Crear Producto
               </NavLink>
             </li>
             <li>
@@ -72,7 +72,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                All Products
+                Todos los productos
               </NavLink>
             </li>
             <li>
@@ -83,7 +83,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                Manage Users
+                Administrar usuarios
               </NavLink>
             </li>
             <li>
@@ -94,7 +94,7 @@ const AdminMenu = () => {
                   color: isActive ? "greenyellow" : "white",
                 })}
               >
-                Manage Orders
+                Administrar ordenes
               </NavLink>
             </li>
           </ul>

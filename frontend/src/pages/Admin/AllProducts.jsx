@@ -7,11 +7,11 @@ const AllProducts = () => {
   const { data: products, isLoading, isError } = useAllProductsQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Cargando...</div>;
   }
 
   if (isError) {
-    return <div>Error loading products</div>;
+    return <div>Error al cargar los productos</div>;
   }
 
   return (
@@ -20,7 +20,7 @@ const AllProducts = () => {
         <div className="flex flex-col  md:flex-row">
           <div className="p-3">
             <div className="ml-[2rem] text-xl font-bold h-12">
-              All Products ({products.length})
+              Todos los productos ({products.length})
             </div>
             <div className="flex flex-wrap justify-around items-center">
               {products.map((product) => (
@@ -72,7 +72,7 @@ const AllProducts = () => {
                             />
                           </svg>
                         </Link>
-                        <p>$ {product?.price}</p>
+                        <p>S/{product?.price}</p>
                       </div>
                     </div>
                   </div>

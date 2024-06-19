@@ -1,6 +1,5 @@
 import { useGetTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
-import SmallProduct from "../pages/Products/SmallProduct";
 import ProductCarousel from "../pages/Products/ProductCarousel";
 
 const Header = () => {
@@ -11,24 +10,23 @@ const Header = () => {
   }
 
   if (error) {
-    return <h1>ERROR</h1>;
+    return <h1 className="text-red-500">ERROR</h1>;
   }
 
   return (
-    <>
-      <div className="flex justify-around">
-        <div className="xl:block lg:hidden md:hidden:sm:hidden">
-          <div className="grid grid-cols-2">
-            {data.map((product) => (
-              <div key={product._id}>
-                <SmallProduct product={product} />
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 min-h-screen text-white p-8 flex flex-col items-center">
+      <div className="flex items-center justify-center mb-8">
+        <img
+          src="/uploads/logo-removebg-preview.png"
+          alt="Tonny's Style Logo"
+          className="w-16 h-16 mr-4"
+        />
+        <h1 className="text-5xl font-bold italic">Tonny's Style</h1>
+      </div>
+      <div className="w-full lg:w-1/4">
         <ProductCarousel />
       </div>
-    </>
+    </div>
   );
 };
 

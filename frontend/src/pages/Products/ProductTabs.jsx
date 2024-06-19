@@ -36,7 +36,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(1)}
         >
-          Write Your Review
+          Escribe tus calificaciones
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -44,7 +44,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(2)}
         >
-          All Reviews
+          Todas las calificaciones
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -52,7 +52,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(3)}
         >
-          Related Products
+          Productos relacionados
         </div>
       </section>
 

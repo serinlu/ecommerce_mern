@@ -99,20 +99,20 @@ const ProductDetails = () => {
                 {product.description}
               </p>
 
-              <p className="text-5xl my-4 font-extrabold">$ {product.price}</p>
+              <p className="text-5xl my-4 font-extrabold">S/ {product.price}</p>
 
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
+                    <FaStore className="mr-2 text-white" /> Marca:{" "}
                     {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[20rem]">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
+                    <FaClock className="mr-2 text-white" /> Agregado:{" "}
                     {moment(product.createAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:{" "}
+                    <FaStar className="mr-2 text-white" /> Calificaciones:{" "}
                     {product.numReviews}
                   </h1>
                 </div>
