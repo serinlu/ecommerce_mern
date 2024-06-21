@@ -48,20 +48,20 @@ const Navigation = () => {
 
   return (
     <div className="relative z-50 flex">
-      <div className="flex flex-col justify-between p-4 text-white bg-[#000] w-[4%] hover:w-[15%] h-[100vh] fixed">
+      <div id="navigation-container" className="flex flex-col justify-between p-4 text-white bg-[#000] h-[100vh] fixed">
         <div className="flex flex-col justify-center space-y-4">
           <Link to="/" className="flex items-center transition-transform transform hover:translate-x-2">
             <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
-            <span className="hidden nav-item-name mt-[3rem]">Inicio</span>
+            <span className="nav-item-name mt-[3rem]">Inicio</span>
           </Link>
           <Link to="/shop" className="flex items-center transition-transform transform hover:translate-x-2">
             <AiOutlineShopping className="mr-2 mt-[3rem]" size={26} />
-            <span className="hidden nav-item-name mt-[3rem]">SHOP</span>
+            <span className="nav-item-name mt-[3rem]">Tienda</span>
           </Link>
           <Link to="/cart" className="flex relative">
             <div className="flex items-center transition-transform transform hover:translate-x-2">
               <AiOutlineShoppingCart className="mt-[3rem] mr-2" size={26} />
-              <span className="hidden nav-item-name mt-[3rem]">Cart</span>
+              <span className="nav-item-name mt-[3rem]">Carrito</span>
             </div>
             <div className="absolute top-9">
               {cartItems.length > 0 && (
@@ -74,7 +74,7 @@ const Navigation = () => {
           <Link to="/favorite" className="flex relative">
             <div className="flex justify-center items-center transition-transform transform hover:translate-x-2">
               <FaHeart className="mt-[3rem] mr-2" size={20} />
-              <span className="hidden nav-item-name mt-[3rem]">Favoritos</span>
+              <span className="nav-item-name mt-[3rem]">Favoritos</span>
               <FavoritesCount />
             </div>
           </Link>
@@ -93,65 +93,61 @@ const Navigation = () => {
               <li>
                 <Link to="/login" className="flex items-center mt-5 transition-transform transform hover:translate-x-2">
                   <AiOutlineLogin className="mr-2 mt-[4px]" size={26} />
-                  <span className="hidden nav-item-name">Login</span>
+                  <span className="nav-item-name">Login</span>
                 </Link>
               </li>
               <li>
                 <Link to="/register" className="flex items-center mt-5 transition-transform transform hover:translate-x-2">
                   <AiOutlineUserAdd size={26} />
-                  <span className="hidden nav-item-name">Registro</span>
+                  <span className="nav-item-name">Registro</span>
                 </Link>
               </li>
             </ul>
           )}
         </div>
       </div>
-      {showSidebar && (
+      {showSidebar && userInfo?.isAdmin && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
           <div className="absolute top-0 right-0 bg-[#000] text-white p-8 w-64 h-full z-50">
             <button onClick={toggleSidebar} className="absolute top-4 right-4 text-white">
               X
             </button>
             <ul className="space-y-4 text-white">
-              {userInfo?.isAdmin && (
-                <>
-                  <li>
-                    <Link to="/admin/dashboard" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Tablero
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/productlist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Crear un producto
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/allproductslist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Listar Productos
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/categorylist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Categorias
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/brandlist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Marcas
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/orderlist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Ordenes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/userlist" className="block px-4 py-2 text-white hover:bg-gray-700">
-                      Usuarios
-                    </Link>
-                  </li>
-                </>
-              )}
+              <li>
+                <Link to="/admin/dashboard" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Tablero
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/productlist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Crear un producto
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/allproductslist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Listar Productos
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/categorylist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Categorias
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/brandlist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Marcas
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/orderlist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Ordenes
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/userlist" className="block px-4 py-2 text-white hover:bg-gray-700">
+                  Usuarios
+                </Link>
+              </li>
               <li>
                 <Link to="/profile" className="block px-4 py-2 text-white hover:bg-gray-700">
                   Perfil
@@ -166,14 +162,16 @@ const Navigation = () => {
           </div>
         </div>
       )}
-      <div className="absolute top-4 right-4">
-        <button
-          onClick={toggleSidebar}
-          className="text-white bg-gray-800 hover:bg-gray-700 rounded-full p-2"
-        >
-          <AiOutlineMenu size={24} />
-        </button>
-      </div>
+      {userInfo?.isAdmin && (
+        <div className="absolute top-4 right-4">
+          <button
+            onClick={toggleSidebar}
+            className="text-white bg-gray-800 hover:bg-gray-700 rounded-full p-2"
+          >
+            <AiOutlineMenu size={24} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

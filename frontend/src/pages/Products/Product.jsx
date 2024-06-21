@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
+import "./Product.css"; // Import the CSS file
 
 const Product = ({ product }) => {
   return (
-    <div className="w-[30rem] ml-[2rem] p-3 relative">
-      <div className="relative">
+    <div className="product-container">
+      <div className="image-container">
         <img
           src={product.image}
           alt={product.name}
-          className="w-[30rem] rounded"
+          className="product-image"
         />
         <HeartIcon product={product} />
       </div>
 
-      <div className="p-4">
+      <div className="product-details">
         <Link to={`/product/${product._id}`}>
-          <h2 className="flex justify-between items-center">
+          <h2 className="product-title">
             <div className="text-lg">{product.name}</div>
-            <span className="bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
+            <span className="product-price">
               S/ {product.price}
             </span>
           </h2>

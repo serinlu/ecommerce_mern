@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.product-container {
+  width: 30rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  position: relative;
+  background: #1a1a1d;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-container:hover {
+  transform: translateY(-10px);
+}
+
+.image-container {
+  position: relative;
+  border: 2px solid #FFD700; /* Thin gold border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensure the border radius applies to the image */
+}
+
+.product-image {
+  width: 100%;
+  display: block;
+  border-radius: 10px; /* Ensure the image itself has rounded corners */
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover .product-image {
+  transform: scale(1.1);
+}
+
+.product-details {
+  padding: 1rem;
+}
+
+.product-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1); /* White background with opacity */
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.product-name {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  color: #FFD700; /* Gold color for product name */
+}
+
+.product-price {
+  background-color: #FEE2E2; /* Light pink background */
+  color: #B91C1C; /* Dark pink text */
+  font-size: 1rem; /* Medium font size */
+  font-weight: 500; /* Medium font weight */
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px; /* Full rounded corners */
+}

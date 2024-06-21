@@ -19,7 +19,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block bg-gray-900 p-6 rounded-lg shadow-lg">
+    <div className="mb-4 lg:block xl:block md:block bg-black p-6 rounded-lg shadow-lg">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data.message || error.error}
@@ -27,7 +27,7 @@ const ProductCarousel = () => {
       ) : (
         <Slider
           {...settings}
-          className="xl:w-[70rem] lg:w-[70rem] md:w-[70rem] sm:w-[70rem] sm:block"
+          className="xl:w-[70rem] lg:w-[50rem] md:w-[50rem] sm:w-[50rem] sm:block"
         >
           {products.map(({ image, _id, name }) => (
             <div key={_id} className="relative">
@@ -35,9 +35,9 @@ const ProductCarousel = () => {
                 <img
                   src={image}
                   alt={name}
-                  className="w-full rounded-lg object-cover h-[30rem]"
+                  className="w-full rounded-lg object-cover h-[35rem]"
                 />
-                <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center rounded-lg">
                   <h2 className="text-4xl font-bold text-white text-center">
                     {name}
                   </h2>

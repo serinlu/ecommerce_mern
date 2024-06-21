@@ -4,13 +4,14 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Header from "../components/Header";
 import Product from "./Products/Product";
+import "./Home.css"; // Import the CSS file
 
 const Home = () => {
   const { keyword } = useParams();
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
+    <div className="home-container">
       {!keyword && <Header />}
       {isLoading ? (
         <Loader />
@@ -20,23 +21,18 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-col items-center mt-10 px-6">
-            <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center">
-              <h1 className="text-5xl font-bold mb-6">Productos Especiales</h1>
-              <Link
-                to="/shop"
-                className="bg-pink-600 text-white font-semibold rounded-full py-3 px-10 shadow-lg hover:bg-pink-700 transition duration-300"
-              >
+          <div className="special-products">
+            <div className="special-products-content">
+              <h1 className="special-products-title">Productos de calidad</h1>
+              <Link to="/shop" className="shop-button">
                 Tienda
               </Link>
             </div>
           </div>
-          <div className="mt-10 px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {data.products.map((product) => (
-                <Product key={product._id} product={product} />
-              ))}
-            </div>
+          <div className="products-grid">
+            {data.products.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
           </div>
         </>
       )}

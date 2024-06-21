@@ -1,6 +1,7 @@
 import { useGetTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
 import ProductCarousel from "../pages/Products/ProductCarousel";
+import "./Header.css"; // Import the CSS file
 
 const Header = () => {
   const { data, isLoading, error } = useGetTopProductsQuery();
@@ -14,16 +15,16 @@ const Header = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 min-h-screen text-white p-8 flex flex-col items-center">
-      <div className="flex items-center justify-center mb-8">
+    <div className="header-container">
+      <div className="header-content">
         <img
           src="/uploads/logo-removebg-preview.png"
           alt="Tonny's Style Logo"
-          className="w-16 h-16 mr-4"
+          className="logo"
         />
-        <h1 className="text-5xl font-bold italic">Tonny's Style</h1>
+        <h1 className="title">Tonny's Style</h1>
       </div>
-      <div className="w-full lg:w-1/4">
+      <div className="carousel-container">
         <ProductCarousel />
       </div>
     </div>
