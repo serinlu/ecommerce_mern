@@ -1,0 +1,46 @@
+.tab-button {
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    background: #333;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+  }
+  
+  .tab-button.active {
+    background: #ff4081;
+    color: #fff;
+  }
+  
+  .tab-button:hover {
+    background: #444;
+  }
+  
+  .reviews-container {
+    max-width: 800px;
+  }
+  
+  .review-item {
+    background: #222;
+    color: #ccc;
+  }
+  
+  .related-products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .tab-button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+  
+    .reviews-container {
+      padding: 1rem;
+    }
+  }
+  

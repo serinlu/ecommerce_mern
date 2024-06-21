@@ -96,17 +96,17 @@ const Product = () => {
               <p className="my-4 xl:w-[35rem] lg:w-[35] md:w-[30rem] text-[#B0B0B0]">
                 {product.description}
               </p>
-              <p className="text-5xl my-4 font-extrabold">${product.price}</p>
+              <p className="text-5xl my-4 font-extrabold">S/{product.price}</p>
               {/* --------------------------------------------------- */}
 
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
+                    <FaStore className="mr-2 text-white" /> Marca:{" "}
                     {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
+                    <FaClock className="mr-2 text-white" /> Agregado:{" "}
                     {moment(product.createdAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
@@ -117,14 +117,14 @@ const Product = () => {
 
                 <div className="two">
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Ratings: {rating}
+                    <FaStar className="mr-2 text-white" /> Califcaciones: {rating}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
+                    <FaShoppingCart className="mr-2 text-white" /> Cantidad:{" "}
                     {product.quantity}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaBox className="mr-2 text-white" /> In Stock:{" "}
+                    <FaBox className="mr-2 text-white" /> En stock:{" "}
                     {product.countInStock}
                   </h1>
                 </div>
@@ -159,7 +159,7 @@ const Product = () => {
                   disabled={product.countInStock === 0}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
-                  Add To Cart
+                  Agregar al carrito
                 </button>
               </div>
               {/* --------------------------------------------------- */}

@@ -3,22 +3,26 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
+    const { name, description, price, category, quantity, brand, visibility, productType, measurementType } = req.fields;
 
     // Validation
     switch (true) {
       case !name:
-        return res.json({ error: "Name is required" });
+        return res.json({ error: "El nombre es requerido" });
       case !brand:
-        return res.json({ error: "Brand is required" });
+        return res.json({ error: "La marca es requerida" });
       case !description:
-        return res.json({ error: "Description is required" });
+        return res.json({ error: "La descripción es requerida" });
       case !price:
-        return res.json({ error: "Price is required" });
+        return res.json({ error: "El precio es requerido" });
       case !category:
-        return res.json({ error: "Category is required" });
+        return res.json({ error: "La categoría es requerida" });
       case !quantity:
-        return res.json({ error: "Quantity is required" });
+        return res.json({ error: "La cantidad es requerida" });
+      case !productType:
+        return res.json({ error: "El tipo de producto es requerido" });
+      case !measurementType:
+        return res.json({ error: "El tipo de medida es requerido" });
     }
 
     const product = new Product({ ...req.fields });
@@ -32,22 +36,26 @@ const addProduct = asyncHandler(async (req, res) => {
 
 const updateProductDetails = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
+    const { name, description, price, category, quantity, brand, visibility, productType, measurementType } = req.fields;
 
     // Validation
     switch (true) {
       case !name:
-        return res.json({ error: "Name is required" });
+        return res.json({ error: "El nombre es requerido" });
       case !brand:
-        return res.json({ error: "Brand is required" });
+        return res.json({ error: "La marca es requerida" });
       case !description:
-        return res.json({ error: "Description is required" });
+        return res.json({ error: "La descripción es requerida" });
       case !price:
-        return res.json({ error: "Price is required" });
+        return res.json({ error: "El precio es requerido" });
       case !category:
-        return res.json({ error: "Category is required" });
+        return res.json({ error: "La categoría es requerida" });
       case !quantity:
-        return res.json({ error: "Quantity is required" });
+        return res.json({ error: "La cantidad es requerida" });
+      case !productType:
+        return res.json({ error: "El tipo de producto es requerido" });
+      case !measurementType:
+        return res.json({ error: "El tipo de medida es requerido" });
     }
 
     const product = await Product.findByIdAndUpdate(
@@ -71,7 +79,7 @@ const removeProduct = asyncHandler(async (req, res) => {
     res.json(product);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Error del servidor" });
   }
 });
 
@@ -99,7 +107,7 @@ const fetchProducts = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Error del servidor" });
   }
 });
 
@@ -110,11 +118,11 @@ const fetchProductById = asyncHandler(async (req, res) => {
       return res.json(product);
     } else {
       res.status(404);
-      throw new Error("Product not found");
+      throw new Error("Producto no encontrado");
     }
   } catch (error) {
     console.error(error);
-    res.status(404).json({ error: "Product not found" });
+    res.status(404).json({ error: "Producto no encontrado" });
   }
 });
 
@@ -122,13 +130,14 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category")
+      .populate("brand") // Added populate for brand
       .limit(12)
       .sort({ createAt: -1 });
 
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Error del servidor" });
   }
 });
 
@@ -144,7 +153,7 @@ const addProductReview = asyncHandler(async (req, res) => {
 
       if (alreadyReviewed) {
         res.status(400);
-        throw new Error("Product already reviewed");
+        throw new Error("Producto ya revisado");
       }
 
       const review = {
@@ -163,10 +172,10 @@ const addProductReview = asyncHandler(async (req, res) => {
         product.reviews.length;
 
       await product.save();
-      res.status(201).json({ message: "Review added" });
+      res.status(201).json({ message: "Revisión agregada" });
     } else {
       res.status(404);
-      throw new Error("Product not found");
+      throw new Error("Producto no encontrado");
     }
   } catch (error) {
     console.error(error);
@@ -206,7 +215,7 @@ const filterProducts = asyncHandler(async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: "Error del servidor" });
   }
 });
 
