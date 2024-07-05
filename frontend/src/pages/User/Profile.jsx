@@ -6,10 +6,15 @@ import Loader from "../../components/Loader";
 import { useProfileMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
+import Modal from "../../components/Modal";
 
 const Profile = () => {
-  const [username, setUserName] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [numCel, setNumCel] = useState("");
   const [email, setEmail] = useState("");
+  const [tipoDoc, setTipoDoc] = useState("");
+  const [numDoc, setNumDoc] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -19,9 +24,13 @@ const Profile = () => {
     useProfileMutation();
 
   useEffect(() => {
-    setUserName(userInfo.username);
+    setNombre(userInfo.nombre);
+    setApellido(userInfo.apellido);
+    setNumCel(userInfo.numCel);
     setEmail(userInfo.email);
-  }, [userInfo.email, userInfo.username]);
+    setTipoDoc(userInfo.tipoDoc);
+    setNumDoc(userInfo.numDoc);
+  }, [userInfo.nombre, userInfo.apellido, userInfo.numCel, userInfo.email, userInfo.tipoDoc, userInfo.numDoc]);
 
   const dispatch = useDispatch();
 
@@ -33,8 +42,12 @@ const Profile = () => {
       try {
         const res = await updateProfile({
           _id: userInfo._id,
-          username,
+          nombre,
+          apellido,
+          numCel,
           email,
+          tipoDoc,
+          numDoc,
           password,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
@@ -46,75 +59,117 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 mt-[10rem]">
-      <div className="flex justify-center align-center md:flex md:space-x-4">
-        <div className="md:w-1/3">
-          <h2 className="text-2xl font-semibold mb-4">Update Profile</h2>
-          <form onSubmit={submitHandler}>
-            <div className="mb-4">
-              <label className="block text-white mb-2">Name</label>
-              <input
-                type="text"
-                placeholder="Enter name"
-                className="form-input p-4 rounded-sm w-full"
-                value={username}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </div>
+    <div className="container mx-auto px-4 mt-40">
+    <div className="flex justify-center items-center md:flex md:space-x-4">
+      {/* Contenedor del formulario ajustado a más ancho */}
+      <div className="w-full max-w-4xl">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Actualizar Perfil</h2>
+        <form onSubmit={submitHandler} className="flex flex-wrap justify-between">
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Nombre</label>
+            <input
+              type="text"
+              placeholder="Ingresa tu nombre"
+              className="form-input p-4 rounded-sm w-full"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Apellidos</label>
+            <input
+              type="text"
+              placeholder="Ingresa tus apellidos"
+              className="form-input p-4 rounded-sm w-full"
+              value={apellido}
+              onChange={(e) => setApellido(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Teléfono</label>
+            <input
+              type="number"
+              placeholder="Ingresa tu teléfono"
+              className="form-input p-4 rounded-sm w-full"
+              value={numCel}
+              onChange={(e) => setNumCel(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Correo electrónico</label>
+            <input
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
+              className="form-input p-4 rounded-sm w-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Tipo de Documento</label>
+            <input
+              type="text"
+              placeholder="Selecciona el tipo de documento"
+              className="form-input p-4 rounded-sm w-full"
+              value={tipoDoc}
+              onChange={(e) => setTipoDoc(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Número de Documento</label>
+            <input
+              type="number"
+              placeholder="Ingresa tu número de documento"
+              className="form-input p-4 rounded-sm w-full"
+              value={numDoc}
+              onChange={(e) => setNumDoc(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Contraseña</label>
+            <input
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              className="form-input p-4 rounded-sm w-full"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-2">
+            <label className="block text-gray-700 mb-2">Confirmar contraseña</label>
+            <input
+              type="password"
+              placeholder="Vuelve a ingresar tu contraseña"
+              className="form-input p-4 rounded-sm w-full"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+        </form>
+        <div className="flex justify-between p-2">
+          <button
+            type="submit"
+            className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
+          >
+            Actualizar
+          </button>
+          <button
+            className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
+          >
+            Mis medidas
+          </button>
 
-            <div className="mb-4">
-              <label className="block text-white mb-2">Email Address</label>
-              <input
-                type="email"
-                placeholder="Enter email"
-                className="form-input p-4 rounded-sm w-full"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-white mb-2">Password</label>
-              <input
-                type="password"
-                placeholder="Enter password"
-                className="form-input p-4 rounded-sm w-full"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-white mb-2">Confirm Password</label>
-              <input
-                type="password"
-                placeholder="Confirm password"
-                className="form-input p-4 rounded-sm w-full"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="flex justify-between">
-              <button
-                type="submit"
-                className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
-              >
-                Update
-              </button>
-
-              <Link
-                to="/user-orders"
-                className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700"
-              >
-                My Orders
-              </Link>
-            </div>
-            {loadingUpdateProfile && <Loader />}
-          </form>
+          <Link
+            to="/user-orders"
+            className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700"
+          >
+            Mis Pedidos
+          </Link>
         </div>
+        {loadingUpdateProfile && <Loader />}
       </div>
     </div>
+  </div>
   );
 };
 

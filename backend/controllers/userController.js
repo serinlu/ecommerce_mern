@@ -54,7 +54,10 @@ const loginUser = asyncHandler(async (req, res) => {
         _id: existingUser._id,
         nombre: existingUser.nombre,
         apellido: existingUser.apellido,
+        numCel: existingUser.numCel,
         email: existingUser.email,
+        tipoDoc: existingUser.tipoDoc,
+        numDoc: existingUser.numDoc,
         isAdmin: existingUser.isAdmin,
       });
       return;
@@ -90,7 +93,10 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       nombre: user.nombre,
       apellido: user.apellido,
+      numCel: user.numCel,
       email: user.email,
+      tipoDoc: user.tipoDoc,
+      numDoc: user.numDoc,
     });
   } else {
     res.status(404);
@@ -104,7 +110,10 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.nombre = req.body.nombre || user.nombre;
     user.apellido = req.body.apellido || user.apellido;
+    user.numCel = req.body.numCel || user.numCel;
     user.email = req.body.email || user.email;
+    user.tipoDoc = req.body.tipoDoc || user.tipoDoc;
+    user.numDoc = req.body.numDoc || user.numDoc;
 
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
@@ -118,7 +127,10 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       nombre: updatedUser.nombre,
       apellido: updatedUser.apellido,
+      numCel: updatedUser.numCel,
       email: updatedUser.email,
+      tipoDoc: updatedUser.tipoDoc,
+      numDoc: updatedUser.numDoc,
       isAdmin: updatedUser.isAdmin,
     });
   } else {
@@ -161,7 +173,10 @@ const updateUserById = asyncHandler(async (req, res) => {
   if (user) {
     user.nombre = req.body.nombre || user.nombre;
     user.apellido = req.body.apellido || user.apellido;
+    user.numCel = req.body.numCel || user.numCel;
     user.email = req.body.email || user.email;
+    user.tipoDoc = req.body.tipoDoc || user.tipoDoc;
+    user.numDoc = req.body.numDoc || user.numDoc;
     user.isAdmin = Boolean(req.body.isAdmin);
 
     const updatedUser = await user.save();
@@ -170,7 +185,10 @@ const updateUserById = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       nombre: updatedUser.nombre,
       apellido: updatedUser.apellido,
+      numCel: updatedUser.numCel,
       email: updatedUser.email,
+      tipoDoc: updatedUser.tipoDoc,
+      numDoc: updatedUser.numDoc,
       isAdmin: updatedUser.isAdmin,
     });
   } else {
