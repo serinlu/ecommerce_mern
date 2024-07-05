@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema;
+import Cupon from "./cuponModel.js";
 
 const sacoSchema = mongoose.Schema({
   pecho_s: { type: Number, required: false },
@@ -48,6 +50,7 @@ const userSchema = mongoose.Schema(
     medida_saco: [sacoSchema],
     medida_pantalon: [pantalonSchema],
     medida_camisa: [camisaSchema],
+    cupon: { type: ObjectId, ref: 'Cupon' },
     nombre: {type: String, required: true,},
     apellido: {type: String, required: true,},
     numCel: {type: String, required: true,},

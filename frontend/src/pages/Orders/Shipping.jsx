@@ -42,7 +42,7 @@ const Shipping = () => {
       <ProgressSteps step1 step2 />
       <div className="mt-[10rem] flex justify-around items-center flex-wrap">
         <form onSubmit={submitHandler} className="w-[40rem]">
-          <h1 className="text-2xl font-semibold mb-4">Shipping</h1>
+          <h1 className="text-2xl font-semibold mb-4">Método de pago</h1>
           <div className="mb-4">
             <label className="block text-white mb-2">Address</label>
             <input
