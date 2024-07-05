@@ -2,36 +2,9 @@ import User from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
-import { check, validationResult } from "express-validator";
-
-const validateUser = [
-  check('nombre').notEmpty().withMessage('El nombre es requerido'),
-  check('apellido').notEmpty().withMessage('El apellido es requerido'),
-  check('numCel').notEmpty().withMessage('El número de celular es requerido'),
-  check('email').isEmail().withMessage('Debe ser un correo electrónico válido'),
-  check('tipoDoc').isIn(['DNI', 'C.E', 'Pasaporte']).withMessage('Tipo de documento inválido'),
-  check('numDoc')
-    .custom((value, { req }) => {
-      if (req.body.tipoDoc === 'DNI' && value.length !== 8) {
-        throw new Error('El DNI debe tener 8 dígitos');
-      }
-      if ((req.body.tipoDoc === 'C.E' || req.body.tipoDoc === 'Pasaporte') && value.length > 20) {
-        throw new Error('El número de C.E o Pasaporte no puede tener más de 20 dígitos');
-      }
-      return true;
-    }).withMessage('Número de documento inválido'),
-  check('password').notEmpty().withMessage('La contraseña es requerida'),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
-  }
-];
 
 const createUser = asyncHandler(async (req, res) => {
-  const { nombre, apellido, numCel, email, tipoDoc, numDoc, password } = req.body;
+  const { nombre, apellido, numCel, email, tipoDoc, numDoc, password, medida_saco, medida_camisa, medida_pantalon } = req.body;
 
   const userExists = await User.findOne({ email });
   if (userExists) {
@@ -41,7 +14,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const newUser = new User({ nombre, apellido, numCel, email, tipoDoc, numDoc, password: hashedPassword });
+  const newUser = new User({ nombre, apellido, numCel, email, tipoDoc, numDoc, password: hashedPassword, medida_saco, medida_pantalon, medida_camisa });
 
   try {
     await newUser.save();
@@ -56,6 +29,9 @@ const createUser = asyncHandler(async (req, res) => {
       tipoDoc: newUser.tipoDoc,
       numDoc: newUser.numDoc,
       isAdmin: newUser.isAdmin,
+      medida_saco,
+      medida_camisa,
+      medida_pantalon,
     });
   } catch (error) {
     res.status(400);
@@ -213,5 +189,4 @@ export {
   deleteUserById,
   getUserById,
   updateUserById,
-  validateUser,
 };
